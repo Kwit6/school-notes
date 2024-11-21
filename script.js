@@ -56,11 +56,6 @@ function createBackButton(onClick) {
 // Отображение списка предметов
 function displaySubjects() {
     contentDiv.innerHTML = "";
-    const backButton = createBackButton(() => {
-        displaySubjects();
-    });
-    contentDiv.appendChild(backButton);
-
     const list = document.createElement("ul");
     Object.keys(subjects).forEach(subject => {
         const subjectItem = document.createElement("li");
