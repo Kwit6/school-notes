@@ -15,17 +15,25 @@
         </nav>
     </header>
     <main>
+        <!-- Блок для отображения QR-кодов -->
+        <section id="donation-qr">
+            <h2>Пожертвования</h2>
+            <p>Поддержите проект! Отсканируйте QR-коды ниже для пожертвований:</p>
+            <div class="qr-codes">
+                <!-- QR-код 1 -->
+                <div class="qr-code">
+                    <img src="qr-code1.png" alt="QR-код для пожертвования 1">
+                    <p>Пожертвование 1</p>
+                </div>
+                <!-- QR-код 2 -->
+                <div class="qr-code">
+                    <img src="qr-code2.png" alt="QR-код для пожертвования 2">
+                    <p>Пожертвование 2</p>
+                </div>
+            </div>
+        </section>
         <div id="content">
             <p>Выберите предмет, чтобы увидеть конспекты.</p>
-        </div>
-        <!-- Блок с QR-кодами для пожертвований, виден только на главной странице -->
-        <div id="donation-qr" style="display: none;">
-            <h2>Поддержите проект</h2>
-            <p>Сканируйте QR-коды для пожертвований:</p>
-            <div>
-                <img src="qr-code1.png" alt="QR Code 1" style="width: 150px; margin: 10px;">
-                <img src="qr-code2.png" alt="QR Code 2" style="width: 150px; margin: 10px;">
-            </div>
         </div>
     </main>
     <script src="script.js"></script>
