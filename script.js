@@ -10,38 +10,34 @@ class Theory {
 // Список конспектов по предметам
 const subjects = {
     "Математика": [
-        new Theory(
-            "Алгебра: Основные правила",
-            "Алгебра — это раздел математики, который изучает уравнения и функции.",
-            "https://example.com/algebra.png" // Укажи ссылку на картинку
-        ),
-        new Theory(
-            "Теорема Пифагора",
-            "В прямоугольном треугольнике сумма квадратов катетов равна квадрату гипотенузы.",
-            "https://example.com/pythagoras.png"
-        )
+        { name: "Алгебра", topics: [
+            new Theory("Основные правила", "Алгебра — это раздел математики, который изучает уравнения и функции."),
+            new Theory("Теорема Пифагора", "В прямоугольном треугольнике сумма квадратов катетов равна квадрату гипотенузы.")
+        ] },
+        { name: "Геометрия", topics: [
+            new Theory("Площадь треугольника", "Площадь треугольника можно вычислить по формуле: S = 1/2 * основание * высота."),
+            new Theory("Прямоугольные треугольники", "Существуют теоремы, как теорема Пифагора для прямоугольных треугольников.")
+        ] }
     ],
     "Физика": [
-        new Theory(
-            "Законы Ньютона",
-            "Первый закон: тело сохраняет состояние покоя или равномерного движения...",
-            "https://example.com/newton.png"
-        ),
-        new Theory(
-            "Энергия",
-            "Энергия — это способность совершать работу."
-        )
+        { name: "Механика", topics: [
+            new Theory("Законы Ньютона", "Первый закон: тело сохраняет состояние покоя или равномерного движения..."),
+            new Theory("Работа и энергия", "Энергия — это способность совершать работу.")
+        ] },
+        { name: "Электричество", topics: [
+            new Theory("Закон Ома", "Ток в проводнике пропорционален напряжению и обратно пропорционален сопротивлению."),
+            new Theory("Электрические цепи", "Электрическая цепь состоит из проводников, источников тока и потребителей.")
+        ] }
     ],
     "Химия": [
-        new Theory(
-            "Атомы и молекулы",
-            "Атом — это мельчайшая частица вещества.",
-            "https://example.com/atoms.png"
-        ),
-        new Theory(
-            "Периодическая таблица",
-            "Система элементов, созданная Д. И. Менделеевым."
-        )
+        { name: "Химические реакции", topics: [
+            new Theory("Окисление и восстановление", "Окисление — это процесс потери электронов, восстановление — приобретение."),
+            new Theory("Типы реакций", "Существует несколько типов реакций: замещения, присоединения и т. д.")
+        ] },
+        { name: "Атомы и молекулы", topics: [
+            new Theory("Атом", "Атом — это мельчайшая частица вещества, сохраняющая все его химические свойства."),
+            new Theory("Молекулы", "Молекулы состоят из двух или более атомов, связанных химической связью.")
+        ] }
     ]
 };
 
@@ -49,41 +45,88 @@ const subjects = {
 const subjectsMenu = document.getElementById("subjects-menu");
 const contentDiv = document.getElementById("content");
 
-Object.keys(subjects).forEach(subject => {
-    const tab = document.createElement("li");
-    const link = document.createElement("a");
-    link.href = "#";
-    link.textContent = subject;
-    link.addEventListener("click", () => displaySubjectContent(subject));
-    tab.appendChild(link);
-    subjectsMenu.appendChild(tab);
-});
-
-// Отображение конспектов для выбранного предмета
-function displaySubjectContent(subject) {
-    contentDiv.innerHTML = ""; // Очищаем контент
-    const subjectContent = subjects[subject];
-    subjectContent.forEach(theory => {
-        const section = document.createElement("section");
-        const title = document.createElement("h2");
-        const text = document.createElement("p");
-
-        title.textContent = theory.title;
-        text.textContent = theory.content;
-
-        section.appendChild(title);
-        section.appendChild(text);
-
-        // Если есть изображение, добавляем его
-        if (theory.image) {
-            const img = document.createElement("img");
-            img.src = theory.image;
-            img.alt = theory.title;
-            img.style.maxWidth = "100%"; // Чтобы картинка не выходила за рамки
-            img.style.borderRadius = "8px";
-            section.appendChild(img);
-        }
-
-        contentDiv.appendChild(section);
-    });
+// Кнопка "Назад"
+function createBackButton(onClick) {
+    const backButton = document.createElement("button");
+    backButton.textContent = "Назад";
+    backButton.onclick = onClick;
+    return backButton;
 }
+
+// Отображение списка предметов
+function displaySubjects() {
+    contentDiv.innerHTML = "";
+    const backButton = createBackButton(() => {
+        displaySubjects();
+    });
+    contentDiv.appendChild(backButton);
+
+    const list = document.createElement("ul");
+    Object.keys(subjects).forEach(subject => {
+        const subjectItem = document.createElement("li");
+        const subjectLink = document.createElement("a");
+        subjectLink.href = "#";
+        subjectLink.textContent = subject;
+        subjectLink.onclick = () => displayTopics(subject);
+        subjectItem.appendChild(subjectLink);
+        list.appendChild(subjectItem);
+    });
+    contentDiv.appendChild(list);
+}
+
+// Отображение списка тем по выбранному предмету
+function displayTopics(subject) {
+    contentDiv.innerHTML = "";
+    const backButton = createBackButton(() => {
+        displaySubjects();
+    });
+    contentDiv.appendChild(backButton);
+
+    const subjectData = subjects[subject];
+    const list = document.createElement("ul");
+    subjectData.forEach(unit => {
+        const unitItem = document.createElement("li");
+        const unitLink = document.createElement("a");
+        unitLink.href = "#";
+        unitLink.textContent = unit.name;
+        unitLink.onclick = () => displayTopicContent(subject, unit.name);
+        unitItem.appendChild(unitLink);
+        list.appendChild(unitItem);
+    });
+    contentDiv.appendChild(list);
+}
+
+// Отображение контента для выбранной темы
+function displayTopicContent(subject, topicName) {
+    contentDiv.innerHTML = "";
+    const backButton = createBackButton(() => {
+        displayTopics(subject);
+    });
+    contentDiv.appendChild(backButton);
+
+    const unit = subjects[subject].find(unit => unit.name === topicName);
+    const topic = unit.topics[0]; // Здесь выбирается первая тема из списка
+    const section = document.createElement("section");
+    const title = document.createElement("h2");
+    const text = document.createElement("p");
+
+    title.textContent = topic.title;
+    text.textContent = topic.content;
+
+    section.appendChild(title);
+    section.appendChild(text);
+
+    if (topic.image) {
+        const img = document.createElement("img");
+        img.src = topic.image;
+        img.alt = topic.title;
+        img.style.maxWidth = "100%";
+        img.style.borderRadius = "8px";
+        section.appendChild(img);
+    }
+
+    contentDiv.appendChild(section);
+}
+
+// Инициализация
+displaySubjects();
