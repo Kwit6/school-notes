@@ -50,34 +50,15 @@ main {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-#donation-qr {
-    background-color: #fff3e0;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
-    text-align: center;
-    width: 100%; /* Блок будет занимать всю ширину родителя */
-    max-width: 600px; /* Максимальная ширина блока */
-    margin-left: auto;
-    margin-right: auto; /* Центрируем блок */
+button {
+    background-color: #6200ea;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
 }
 
-.qr-codes {
-    display: flex;
-    justify-content: space-evenly; /* Равномерное распределение */
-    gap: 20px; /* Расстояние между QR-кодами */
-}
-
-.qr-code img {
-    width: 120px; /* Фиксированный размер QR-кодов */
-    height: 120px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-.qr-code p {
-    text-align: center;
-    margin-top: 10px;
-    font-weight: bold;
+button:hover {
+    background-color: #3700b3;
 }
