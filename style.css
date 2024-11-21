@@ -57,19 +57,21 @@ main {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     margin-top: 20px;
     text-align: center;
+    width: 100%; /* Блок будет занимать всю ширину родителя */
+    max-width: 600px; /* Максимальная ширина блока */
+    margin-left: auto;
+    margin-right: auto; /* Центрируем блок */
 }
 
 .qr-codes {
     display: flex;
-    justify-content: center; /* Центрируем блоки с QR-кодами */
-    gap: 20px; /* Добавляем расстояние между QR-кодами */
+    justify-content: space-evenly; /* Равномерное распределение */
+    gap: 20px; /* Расстояние между QR-кодами */
 }
 
 .qr-code img {
-    max-width: 150px; /* Максимальная ширина изображения */
-    max-height: 150px; /* Максимальная высота изображения */
-    width: auto; /* Сохраняем пропорции */
-    height: auto; /* Сохраняем пропорции */
+    width: 120px; /* Фиксированный размер QR-кодов */
+    height: 120px;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
