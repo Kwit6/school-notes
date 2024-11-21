@@ -74,7 +74,7 @@ footer h3 {
 }
 
 #qr-codes img {
-    max-width: 150px;
+    max-width: 50px;
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
