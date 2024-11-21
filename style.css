@@ -49,6 +49,8 @@ main {
     padding: 15px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+/* Остальные стили остаются без изменений */
+
 footer {
     background-color: #f4f4f4;
     padding: 20px;
@@ -77,3 +79,4 @@ footer h3 {
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+
