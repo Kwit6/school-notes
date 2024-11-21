@@ -4,21 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Конспекты</title>
-	<link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
         <h1>Школьные конспекты</h1>
         <nav>
-            <ul id="subjects-menu">
-                <!-- Вкладки предметов будут добавлены через JavaScript -->
-            </ul>
+            <ul id="subjects-menu"></ul>
         </nav>
     </header>
     <main>
         <div id="content">
             <p>Выберите предмет, чтобы увидеть конспекты.</p>
+        </div>
+        <!-- Блок с QR-кодами для пожертвований, виден только на главной странице -->
+        <div id="donation-qr" style="display: none;">
+            <h2>Поддержите проект</h2>
+            <p>Сканируйте QR-коды для пожертвований:</p>
+            <div>
+                <img src="qr1.png" alt="QR Code 1" style="width: 150px; margin: 10px;">
+                <img src="qr2.png" alt="QR Code 2" style="width: 150px; margin: 10px;">
+            </div>
         </div>
     </main>
     <script src="script.js"></script>
